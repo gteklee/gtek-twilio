@@ -1,0 +1,86 @@
+/** Navbar **/
+.navbar {
+	position: relative;
+	overflow: hidden;
+	margin: 0 auto;
+
+	font-size: 16px;
+	font-weight: bold;
+	font-family: 'Rubik', sans-serif;
+}
+	
+	.navbar ul {
+		position: relative;
+		list-style: none;
+		display: flex;
+		margin: 0 auto;
+		padding: 0;
+		justify-content: center;
+	}
+
+	.navbar ul li {
+		position: relative;
+		display: block;
+		border: solid;
+		border-color: #d7d7d7;
+		border-width: 1px;
+		padding: 20px 40px;
+		background-color: #e2e2e2;
+	}
+
+		.navbar ul li:hover {
+			color: #0094DE;
+			cursor: pointer;
+		}
+
+		.navbar ul li.active {
+			position: relative;
+			display: block;
+			border-top-width: 4px;
+			border-top-color: #0094DE;
+			border-bottom: none;
+			background-color: #fefefe;
+			color: #0094DE;
+		}
+
+		.navbar ul li:nth-child(2) {
+			border-right: none;
+			border-left: none;
+		}
+
+		.navbar ul li:first-child {
+			border-top-left-radius: 5px;
+		}
+
+		.navbar ul li:last-child {
+			border-right: solid;
+			border-color: #d7d7d7;
+			border-width: 1px;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+
+		.navbar ul li:last-child.active {
+			border-top-width: 4px;
+			border-top-color: #0094DE;
+			border-bottom-right-radius: 0;
+		}
+
+	.navbar a {
+		text-decoration: none;
+		color: black;
+	}
+
+
+
+
+
+@media screen and (max-width: 496px)
+{
+	.navbar ul li span { display: none; }
+}
+
+@media screen and (min-width: 800px)
+{
+	.navbar { font-size: 25px; }
+}

@@ -1,0 +1,18 @@
+html {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+body { background-color: #fefefe }
+
+input:focus { outline: none; border: 2px solid #4286f4; }
+
+.section-active {
+	display: block;
+}
+
+.section-hidden {
+	display: none;
+}

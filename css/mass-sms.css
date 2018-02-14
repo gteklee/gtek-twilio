@@ -1,0 +1,66 @@
+section#option-mass {
+	margin: 2rem;
+}
+
+textarea {
+	margin: 0;
+	width: 85%;
+}
+
+.tbl-mass {
+	text-align: left;
+	width: 100%;
+	border-collapse: collapse;
+
+	font-family: 'Rubik', sans-serif;
+}
+
+	.tbl-mass th {
+		border: 1px solid #ddd;
+		padding: 10px;
+	}
+
+	.tbl-mass td {
+		border: 1px solid #ddd;
+		padding: 10px;
+	}
+
+	.tbl-mass tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+
+		.tbl-mass tr:hover {
+			background-color: #ddd;
+			cursor: default;
+		}
+
+.input_container {
+	text-align: center;
+}
+
+.message-preview {
+	display: none;
+	margin-top: 1.5rem;
+}
+
+.table-container {
+	align-items: center;
+
+	max-height: 400px;
+	margin-left: 4rem; margin-right: 4rem;
+	overflow-y: auto;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
+
+#btn-send-mass { margin-top: 1rem; width: 4.5rem; }
+
+@media screen and (max-width: 496px)
+{
+	#btn-file { height: 1.5rem; width: 6rem; }
+}
+
+@media screen and (min-width: 800px)
+{
+	#btn-file { width: 9rem; }
+}

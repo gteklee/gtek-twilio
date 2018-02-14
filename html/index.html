@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+
+		<!-- STYLESHEETS -->
+	    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/nav.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/single-sms.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/mass-sms.css"/>
+	    <link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.12.1.custom/jquery-ui.css" />
+	    <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.min.css" />
+	    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
+
+	    <!-- JQuery -->
+	    <script> window.$ = window.jQuery = require('jquery'); </script> 
+	    <script src="../js/jquery-ui-1.12.1.custom/external/jquery/jquery.js"></script>
+	    <script src="../js/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	</head>
+
+	<body>
+
+	<!-- Navbar -->
+    <div class="navbar">
+      <ul>
+        <li class="other" id="option-single"> <i id="option-single" class="fas fa-user"></i> <span id="option-single">SINGLE</span> </li>
+        <li class="other" id="option-mass"> <i id="option-mass" class="fas fa-users"></i> <span id="option-mass">MASS</span> </li>
+        <li class="other" id="option-settings"> <i id="option-settings" class="fas fa-cog"></i> <span id="option-settings">SETTINGS</span> </li>
+      </ul>
+    </div>
+
+<!-- SECTIONS -->
+
+    <!-- SINGLE SMS -->
+    <section class="section-hidden" id="option-single">
+
+    	<div class="input-container">
+		   	<table>
+		      <tr>
+		        <td> <p class="lbl_input" id="lbl_input_name"> Name: </p> </td>
+		        <td class="input"> <input id="input_name" type="text" name="name"/> </td>
+		      </tr>
+		      <tr>
+		        <td> <p class="lbl_input" id="lbl_input_number"> Phone Number: </p> </td>
+		        <td class="input"> <input id="input_number" type="text" name="number"/> </td>
+		      </tr>
+		      <tr>
+		        <td> <p class="lbl_input" id="lbl_input_type"> Type: </p> </td>
+		        <td class="input"> 
+		          <select id="input_type">
+		            <option value="0"> </option>
+		            <option value="1"> Repair </option>
+		            <option value="2"> Install </option>          
+		          </select> 
+		        </td>
+		      </tr>
+		      <tr>
+		        <td> <p class="lbl_input" id="lbl_input_date"> Date: </p> </td>
+		        <td class="input"> <input type="text" id="datepicker" </td>
+		      </tr>
+		    </table>
+		    <div class="btn-container">
+		      <input type="button" class="btn" value="Send" id="btn-send-single">
+		    </div>
+		</div>
+
+    </section>
+
+    <!-- MASS SMS -->
+    <section class="section-hidden" id="option-mass">
+
+    	<div class="input-container" id="input_container_file">
+			<input id="filepath" type="text" placeholder="Please select a file" class="input_file" disabled="disabled"/>
+			<input type="button" value="Choose a File" class="btn" id="btn-file" />
+
+			<!-- Display when file is chosen -->
+			<div class="message-preview">
+				<div class="table-container">
+				</div>
+				<div class="btn-container">
+		      		<input type="button" value="Send" class="btn" id="btn-send-mass" />
+		    	</div>
+	    	</div>
+
+    	</div>
+    </section>
+
+    <!-- SETTINGS -->
+    <section class="section-hidden" id="option-settings">
+    </section>
+
+<!---->
+
+    <!-- SCRIPTS -->
+    <script src="../js/nav.js"></script>
+    <script src="../js/require.js"></script>
+    <script src="../js/single.js"></script>
+    <script src="../js/mass.js"></script>
+
+	</body>
+
+</html>

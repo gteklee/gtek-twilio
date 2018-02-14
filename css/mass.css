@@ -1,0 +1,46 @@
+textarea {
+	margin: 0;
+	width: 85%;
+}
+
+table {
+	text-align: left;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	th {
+		border: 1px solid #ddd;
+		padding: 10px;
+	}
+
+	td {
+		border: 1px solid #ddd;
+		padding: 10px;
+	}
+
+	tr:nth-child(even){
+		background-color: #f2f2f2;
+	}
+
+		tr:hover {
+			background-color: #ddd;
+		}
+
+.input_container {
+	text-align: center;
+}
+
+.message-preview {
+	display: none;
+	margin-top: 10px;
+}
+
+.table-container {
+	align-items: center;
+
+	max-height: 400px;
+	overflow-y: auto;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+}
