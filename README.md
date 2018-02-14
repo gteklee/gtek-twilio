@@ -1,6 +1,6 @@
 # gtek-twilio
 
-** Gtek-Twilio Project: **
+**Gtek-Twilio Project:**
 
 This is an application used by Gtek Communications to send sms text to customers. This allows customers to confirm appointments via sms text message.
 
