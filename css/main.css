@@ -8,6 +8,9 @@ html {
 body { background-color: #fefefe }
 
 input:focus { outline: none; border: 2px solid #4286f4; }
+select:focus { outline: none; border: 2px solid #4286f4; }
+
+p.lbl_error { color: red; display: none; }
 
 .section-active {
 	display: block;

@@ -10,16 +10,13 @@ let message;			// Message to be sent.
 let _error = false;		// Global error for user input.
 let _errorMsg = '';		// Error message generated when _error is updated.
 
-const invalidChars = ['~', '!', '@', '#', '$', '^', '%', '*', '=', '+']; // Non-valid chars for input. 
+const invalidChars = ['~', '!', '@', '#', '$', '^', '%', '*', '=', '+', '<', '>']; // Non-valid chars for input. 
 
 /**
  * Creates the message to be sent.
  */
 function createMessage_Single()
 {
-	name = $('#input_name').val();
-	number = $('#input_number').val();
-	type = getType($('#input_type').val());
 	date = $('#datepicker').val();
 
 	message = 'Gtek Communications Appointment for ' + type + ' Reminder:\n-----------------------\nFor: ' + name + '\nDate: ' + date;
@@ -55,13 +52,49 @@ function sendMessage(message, to)
 function getType(type)
 {
 	if(type == 0)
-		return '';
-	else if(type == 1)
+	{
+		_error = true;
+		_errorMessage = 'Type must be selected.';
+		$('.lbl_error').text(_errorMessage);
+		$('.lbl_error').show(); 
+	}
+	else if(type == 1 || type == 'repair')
 		return 'Repair';
-	else if(type == 2)
+	else if(type == 2 || type == 'install')
 		return 'Installation';
 	else
-		return 'ERROR';
+	{
+		_error = true;
+		_errorMessage = 'Internal error: Type!';
+	}
+}
+
+function checkInput()
+{
+	if(name == undefined || name == '') 	// If name is empty.
+	{
+		_error = true;
+		_errorMsg = "Customer's name is required.";
+		$('#lbl_input_name').css('color', 'red');
+		$('.lbl_error').text(_errorMsg);
+		$('.lbl_error').show();
+	}
+	else if(number == undefined || number == '')	// If phone number is empty.
+	{
+		_error = true;
+		_errorMsg = "Customer's phone number is required.";
+		$('#lbl_input_number').css('color', 'red');
+		$('.lbl_error').text(_errorMsg);
+		$('.lbl_error').show();
+	}
+	else if($('#input_type').val() == 0)	// If type not selected.
+	{
+		_error = true;
+		_errorMsg = "The type of appointment is required.";
+		$('#lbl_input_type').css('color', 'red');
+		$('.lbl_error').text(_errorMsg);
+		$('.lbl_error').show(); 
+	}
 }
 
 /** EVENTS **/
@@ -71,7 +104,8 @@ function getType(type)
  */
 $('#btn-send-single').on('click', () => {
 
-	
+	if(!_error)
+		checkInput();
 
 	if(!_error)
 		createMessage_Single();
@@ -92,7 +126,7 @@ $(() => {
 /**
  * On #input_name text change, continuosly check for any invalid characters.
  */
-$("#input_name").keyup(() => {
+$('#input_name').keyup(() => {
 	let userInput = $('#input_name').val();
 
 	if(userInput.indexOf(' ') == 0)// If first character is not valid.
@@ -100,6 +134,8 @@ $("#input_name").keyup(() => {
 		$('#lbl_input_name').css('color', 'red');
 		_error = true;
 		_errorMsg = 'Name cannot start with white space!';
+		$('.lbl_error').text(_errorMsg);
+		$('.lbl_error').show();
 	}
 	else
 	{
@@ -112,16 +148,20 @@ $("#input_name").keyup(() => {
 				$('#lbl_input_name').css('color', 'red');
 				_error = true;
 				_errorMsg = 'Name contains invalid character!';
+				$('.lbl_error').text(_errorMsg);
+				$('.lbl_error').show();
 				break;
 			}
 			else
 			{
 				$('#lbl_input_name').css('color', 'black');
-
 				_error = false;
+				$('.lbl_error').hide();
+				name = userInput;
 			}
 		}
 	}
+	console.log(name);
 
 });
 
@@ -131,25 +171,52 @@ $("#input_name").keyup(() => {
  * Also auto format phone number as user inputs data -> (xxx) xxx-xxxx
  * 
  * /[^$,.\d]/ -> check for any non-numeric char.
+ * Check length of number.
+ * Replace any special character and whitespace with ''.
  */
-$("#input_number").keyup(event => {
+$('#input_number').keyup(event => {
 	let userInput = $('#input_number').val();
+	userInput = userInput.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/\s]/gi, '');
 
 	// Check for alpha chars.
-	if(userInput.match(/[^$,.\d]/))
+	if(userInput.match(/^[a-zA-Z]/))
 	{
 		$('#lbl_input_number').css('color', 'red');
 		_error = true;
 		_errorMsg = 'Invalid phone number!';
+		$('.lbl_error').text(_errorMsg);
+		$('.lbl_error').show();
+	}
+	else if(userInput.length > 10)
+	{
+		$('#lbl_input_number').css('color', 'red');
+		_error = true;
+		_errorMsg = 'Phone Number is too long!';
+		$('.lbl_error').text(_errorMsg);
+		$('.lbl_error').show();
 	}
 	else
 	{
 		$('#lbl_input_number').css('color', 'black');
 		_error = false;
+		$('.lbl_error').hide();
 	}
-	
 
+	if(userInput.length === 10)
+		number = userInput;
+	else
+		number = '';
+
+	console.log(number);
 });
+
+/**
+ * One type dropdown change.
+ */
+$('#input_type').change(event => {
+	type = getType($('#input_type').val());
+});
+
 
 /**
  * Request info from Sonar.

@@ -15,7 +15,7 @@ section#option-single {
 	border-width: 1px;
 
 	height: 1.75rem;
-	width: 8rem;
+	width: 8.3rem;
 
 	margin-top: 1.5rem;
 
@@ -56,7 +56,12 @@ table { border-collapse: collapse; margin: auto; }
 	td { padding: 5px; }
 }
 
-@media screen and (min-width: 800px)
+@media screen and (max-height: 660px)
+{
+	section#option-single .lbl_error { font-size: 15px; }
+}
+
+@media screen and (min-width: 750px)
 {
 	section#option-single { font-size: 20px; margin: 4rem;}
 	input { font-size: 20px; }

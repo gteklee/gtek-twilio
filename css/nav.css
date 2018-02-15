@@ -80,7 +80,7 @@
 	.navbar ul li span { display: none; }
 }
 
-@media screen and (min-width: 800px)
+@media screen and (min-width: 750px)
 {
 	.navbar { font-size: 25px; }
 }

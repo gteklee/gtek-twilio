@@ -101,19 +101,6 @@ function createMessage_Mass()
 	}
 }
 
-/**
- *
- */
-function getType(type)
-{
-	if(type == 'repair')
-		return 'Repair';
-	else if(type == 'install')
-		return 'Installation';
-	else
-		return 'ERROR';
-}
-
 
 /** Jquery functions **/
 function addTable(table)
