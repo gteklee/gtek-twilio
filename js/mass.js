@@ -91,7 +91,12 @@ function checkCSV(data)
 	if(data.length > 4) // Should only be 4 fields.
 	{
 		_errorMass = true;
-		_errorMsg = 'Invalid .csv : Too many fields!'
+		_errorMsg = 'Invalid .csv : Too many fields!';
+	}
+	else if(data.length < 4)
+	{
+		_errorMass = true;
+		_errorMsg = 'Invalid .csv : Not enough fields!';
 	}
 	/**
 	 * number = data[0]
