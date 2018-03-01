@@ -60,7 +60,7 @@ textarea {
 	#btn-file { height: 1.5rem; width: 6rem; }
 }
 
-@media screen and (min-width: 800px)
+@media screen and (min-width: 750px)
 {
 	#btn-file { width: 9rem; }
 }

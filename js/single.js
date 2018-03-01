@@ -38,9 +38,13 @@ function sendMessage(message, to)
 		from: tokens.twilioNUMBER 	// From a valid Twilio number.
 	}, function(err, message) {
 		if(err)
+		{
 			console.error(err.message);
+		}
 		else
+		{
 			console.log('Message Sent');
+		}
 	});
 }
 
