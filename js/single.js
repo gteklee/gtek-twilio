@@ -39,11 +39,13 @@ function sendMessage(message, to)
 	}, function(err, message) {
 		if(err)
 		{
-			console.error(err.message);
+/**/		console.error(err.message);
+			failedCount++;
 		}
 		else
 		{
-			console.log('Message Sent');
+/**/		console.log('Message Sent');
+			successCount++;
 		}
 	});
 }
@@ -116,7 +118,7 @@ $('#btn-send-single').on('click', () => {
 	else
 	{
 		// Inform user of error.
-		console.log(_errorMsg);
+/**/	console.log(_errorMsg);
 
 	}
 });
@@ -165,7 +167,7 @@ $('#input_name').keyup(() => {
 			}
 		}
 	}
-	console.log(name);
+/**/console.log(name);
 
 });
 
@@ -211,7 +213,7 @@ $('#input_number').keyup(event => {
 	else
 		number = '';
 
-	console.log(number);
+/**/console.log(number);
 });
 
 /**

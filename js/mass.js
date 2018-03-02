@@ -1,5 +1,7 @@
 /** Global Variables **/
 let _Data = '';
+let successCount = 0;
+let failedCount = 0;
 let sent = false;
 let imported = false;
 
@@ -155,6 +157,25 @@ function createMessage_Mass()
 	}
 }
 
+/**
+ * Generate a message to inform the user how many messages were successfuly sent
+ * and how many failed to send.
+ */
+function generateSendMessage()
+{
+	console.log(successCount, failedCount);
+	let message = '';
+	if(successCount > 0)
+		message  = '<div id="send-msg"> <h1 id="send-msg-succ"> Messages Sent: ' + successCount + ' </h1> <h1 id="send-msg-fail"> Failed to Send: ' + failedCount + '</div>';
+	else
+		message  = '<div id="send-msg"> <h1 id="send-msg-fail"> All Failed to Send: ' + failedCount + '</div>';
+
+	$('#send-msg').remove();
+	$('.table-container').append(message);
+	$('#send-msg-succ').css('color', '#4286f4');
+	$('#send-msg-fail').css('color', 'red');
+	$('#send-msg').css('font-family', 'arial');
+}
 
 /** Jquery functions **/
 function addTable(table)
@@ -183,6 +204,11 @@ $('#btn-file').on('click', () => {
 });
 
 $('#btn-send-mass').on('click', () => {
+	successCount = 0;
+	failedCount = 0;
 	if(!_errorMass)
+	{
 		createMessage_Mass();
+		generateSendMessage();
+	}
 });
