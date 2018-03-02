@@ -8,7 +8,7 @@ let _errorMass = false;
 /** Functions **/
 
 /**
- * Choose a file 
+ * Choose a file.
  */
 function chooseFile()
 {

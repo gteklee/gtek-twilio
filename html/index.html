@@ -8,7 +8,8 @@
 	    <link rel="stylesheet" type="text/css" href="../css/main.css"/>
 	    <link rel="stylesheet" type="text/css" href="../css/nav.css"/>
 	    <link rel="stylesheet" type="text/css" href="../css/single-sms.css"/>
-	    <link rel="stylesheet" type="text/css" href="../css/mass-sms.css"/>
+			<link rel="stylesheet" type="text/css" href="../css/mass-sms.css"/>
+			<link rel="stylesheet" type="text/css" href="../css/settings.css"/>
 	    <link rel="stylesheet" type="text/css" href="../js/jquery-ui-1.12.1.custom/jquery-ui.css" />
 	    <link rel="stylesheet" type="text/css" href="../css/fontawesome-all.min.css" />
 	    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
@@ -72,23 +73,41 @@
     <section class="section-hidden" id="option-mass">
 
     	<div class="input-container" id="input_container_file">
-			<input id="filepath" type="text" placeholder="Please select a file" class="input_file" disabled="disabled"/>
-			<input type="button" value="Choose a File" class="btn" id="btn-file" />
+				<input id="filepath" type="text" placeholder="Please select a file" class="input_file" disabled="disabled"/>
+				<input type="button" value="Choose a File" class="btn" id="btn-file" />
 
-			<!-- Display when file is chosen -->
-			<div class="message-preview">
-				<div class="table-container">
+				<!-- Display when file is chosen -->
+				<div class="message-preview">
+					<div class="table-container">
+					</div>
+					<div class="btn-container">
+								<input type="button" value="Send" class="btn" id="btn-send-mass" />
+					</div>
 				</div>
-				<div class="btn-container">
-		      		<input type="button" value="Send" class="btn" id="btn-send-mass" />
-		    	</div>
-	    	</div>
 
     	</div>
     </section>
 
     <!-- SETTINGS -->
     <section class="section-hidden" id="option-settings">
+			<div class="input-container">
+				<table>
+					<caption> Default Page </caption>
+					<tr>
+						<td> <p class="lbl_input"> Single </p> </td>
+						<td class="input"> <input id="settings-page-single" type="radio" name="settings-page" value="0"> </td>
+					</tr>
+					<tr>
+						<td> <p class="lbl_input"> Mass </p> </td>
+						<td class="input"> <input id="settings-page-mass" type="radio" name="settings-page" value="1"> </td>
+					</tr>
+					<tr>
+							<td> <p class="lbl_input"> Settings </p> </td>
+							<td class="input"> <input id="settings-page-settings" type="radio" name="settings-page" value="2"> </td>
+					</tr>
+				</table>
+			</div>
+
     </section>
 
 <!---->
@@ -97,7 +116,8 @@
     <script src="../js/nav.js"></script>
     <script src="../js/require.js"></script>
     <script src="../js/single.js"></script>
-    <script src="../js/mass.js"></script>
+		<script src="../js/mass.js"></script>
+		<script src="../js/settings.js"></script>
 
 	</body>
 

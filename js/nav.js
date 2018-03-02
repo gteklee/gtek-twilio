@@ -52,6 +52,24 @@ function setOption(option)
  * DOM window loads.
  */
 $(window).on('load', event => {
-	$('.other').first().removeClass('other').addClass('active');
-	$('.section-hidden').first().removeClass('section-hidden').addClass('section-active');
+	if(localStorage.settings_DefaultPage == 0)
+	{
+		$('li#option-single').removeClass('other').addClass('active');
+		$('section#option-single').removeClass('section-hidden').addClass('section-active');
+	}
+	else if(localStorage.settings_DefaultPage == 1)
+	{
+		$('li#option-mass').removeClass('other').addClass('active');
+		$('section#option-mass').removeClass('section-hidden').addClass('section-active');
+	}
+	else if(localStorage.settings_DefaultPage == 2)
+	{
+		$('li#option-settings').removeClass('other').addClass('active');
+		$('section#option-settings').removeClass('section-hidden').addClass('section-active');
+	}
+	else
+	{
+		$('.other').first().removeClass('other').addClass('active');
+		$('.section-hidden').first().removeClass('section-hidden').addClass('section-active');
+	}
 });

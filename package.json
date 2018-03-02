@@ -1,7 +1,7 @@
 {
   "name": "gtek-sms",
   "version": "1.0.0",
-  "description": "A twilio and sonar-api testing application",
+  "description": "A Twilio API Application!",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
