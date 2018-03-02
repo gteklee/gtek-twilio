@@ -19,17 +19,17 @@ function chooseFile()
 	}, (fileNames) => {
 		if(fileNames === undefined)
 		{
-			console.log("No files were selected");
+/**/		console.log("No files were selected");
 			return;
 		}
 
-		console.log(fileNames[0]);
+/**/	console.log(fileNames[0]);
 		$('.input_file').val(fileNames[0]);
 
 		fs.readFile(fileNames[0], "utf-8", (err, data) => {
 			if(err)
 			{
-				console.log("Cannot read file ", err);
+/**/			console.log("Cannot read file ", err);
 				return;
 			}
 
@@ -45,7 +45,7 @@ function chooseFile()
 function readData(data)
 {
 	let rows = data.split('\n'); // Split row by new line char.
-	console.log(rows);
+/**/console.log(rows);
 
 	_Data = rows;
 
@@ -60,7 +60,7 @@ function readData(data)
 		// Check for an error.
 		// If there is an error exit loop, and inform user by displaying
 		// error message instead of table of data.
-		if(checkError(td)) return;
+		if(checkCSV(td)) return;
 		
 		for(let j = 0; j < td.length + 1; j++)
 		{
@@ -75,7 +75,7 @@ function readData(data)
 
 	// Provide user with appropriate data.
 	if(!_errorMass) table = table + '</table>\n';
-	else table = '<div> <h1> ' + _errorMsg + ' </h1> </div>';
+	else table = '<div id="error-mass-msg"> <h1> ' + _errorMsg + ' </h1> </div>';
 
 	addTable(table); // Add table to html.
 	showPreview();	// Show preview of data.
@@ -97,6 +97,10 @@ function checkCSV(data)
 	{
 		_errorMass = true;
 		_errorMsg = 'Invalid .csv : Not enough fields!';
+	}
+	else
+	{
+		_errorMass = false;
 	}
 	/**
 	 * number = data[0]
@@ -146,7 +150,7 @@ function createMessage_Mass()
 			sendMessage(message, info[0]);
 		}
 
-		console.log('Mass Messages Sent!');
+/**/	console.log('Mass Messages Sent!');
 		sent = true;
 	}
 }
@@ -156,9 +160,11 @@ function createMessage_Mass()
 function addTable(table)
 {
 	$('.tbl-mass').remove();
+	$('#error-mass-msg').remove();
 	$('.table-container').append(table);
 	$('.table-container').css('text-align', 'center');
-
+	$('#error-mass-msg').css('color', 'red');
+	$('#error-mass-msg').css('font-family', 'arial');
 }
 
 function showPreview()
