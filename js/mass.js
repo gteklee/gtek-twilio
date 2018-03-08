@@ -49,6 +49,10 @@ function readData(data)
 	let rows = data.split('\n'); // Split row by new line char.
 /**/console.log(rows);
 
+	// Check that there is not an empty cell.
+	if(rows[rows.length - 1] == "")
+		rows.pop();
+
 	_Data = rows;
 
 	// Create preview based on data in .csv.
@@ -90,6 +94,7 @@ function readData(data)
  */
 function checkCSV(data)
 {
+	console.log('Before .CSV check: ' + data, 'Length: ' + data.length);
 	if(data.length > 4) // Should only be 4 fields.
 	{
 		_errorMass = true;
@@ -97,8 +102,16 @@ function checkCSV(data)
 	}
 	else if(data.length < 4)
 	{
-		_errorMass = true;
-		_errorMsg = 'Invalid .csv : Not enough fields!';
+		if(data[data.length-1] == '')
+		{
+			_errorMass = true;
+			_errorMsg = 'Invalid .csv : Cell with empty string';
+		}
+		else
+		{
+			_errorMass = true;
+			_errorMsg = 'Invalid .csv : Not enough fields!';
+		}
 	}
 	else
 	{
@@ -151,9 +164,8 @@ function createMessage_Mass()
 
 			sendMessage(message, info[0]);
 		}
-
-/**/	console.log('Mass Messages Sent!');
 		sent = true;
+		setTimeout(generateSendMessage, 3000);
 	}
 }
 
@@ -171,7 +183,7 @@ function generateSendMessage()
 		message  = '<div id="send-msg"> <h1 id="send-msg-fail"> All Failed to Send: ' + failedCount + '</div>';
 
 	$('#send-msg').remove();
-	$('.table-container').append(message);
+	$('.msg-results').append(message);
 	$('#send-msg-succ').css('color', '#4286f4');
 	$('#send-msg-fail').css('color', 'red');
 	$('#send-msg').css('font-family', 'arial');
@@ -182,6 +194,7 @@ function addTable(table)
 {
 	$('.tbl-mass').remove();
 	$('#error-mass-msg').remove();
+	$('#send-msg').remove();
 	$('.table-container').append(table);
 	$('.table-container').css('text-align', 'center');
 	$('#error-mass-msg').css('color', 'red');
@@ -209,6 +222,5 @@ $('#btn-send-mass').on('click', () => {
 	if(!_errorMass)
 	{
 		createMessage_Mass();
-		generateSendMessage();
 	}
 });

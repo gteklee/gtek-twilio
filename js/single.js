@@ -41,11 +41,13 @@ function sendMessage(message, to)
 		{
 /**/		console.error(err.message);
 			failedCount++;
+			console.log(failedCount);
 		}
 		else
 		{
 /**/		console.log('Message Sent');
 			successCount++;
+			console.log(successCount);
 		}
 	});
 }
