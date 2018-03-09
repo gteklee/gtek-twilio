@@ -1,5 +1,5 @@
 const ipcRenderer = require('electron').ipcRenderer; // Renders events through IPC.
-let update = false;
+let update = false; // Is an update available?
 
 /**
  * Set single page as default setting if local-storage
