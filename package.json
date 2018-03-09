@@ -1,6 +1,6 @@
 {
   "name": "gtek-sms",
-  "version": "0.3.0",
+  "version": "0.9.0",
   "description": "A Twilio API Application!",
   "main": "main.js",
   "scripts": {
