@@ -1,3 +1,6 @@
+const ipcRenderer = require('electron').ipcRenderer; // Renders events through IPC.
+let update = false;
+
 /**
  * Set single page as default setting if local-storage
  * does not contain any custom user settings.
@@ -51,4 +54,26 @@ $('input[name="settings-page"]').change(()=> {
     let page = $('input[name="settings-page"]:checked').val();
 /**/console.log(page);
     updateDefaultPage(page);
+});
+
+/**
+ * On update ready (new version release) tell the user
+ * that a new version is available. Give the user an
+ * option to quit and install the update.
+ */
+ipcRenderer.on('updateReady', (event, text) => {
+    $('#update-ready p').text('Update Is Available!');
+    $('#update-ready p').css('color', '#4286f4');
+    $('#version').css('color', 'red');
+    $('#version').addClass('version-update');
+    update = true;
+});
+
+/**
+ * On click of version-update when update is available
+ * then update the application.
+ */
+$('#version').on('click', () => {
+    if(update)
+        ipcRenderer.send('quitAndInstall');
 });
