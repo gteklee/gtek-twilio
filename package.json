@@ -16,6 +16,9 @@
     "tutorial",
     "demo"
   ],
+  "win": {
+    "icon": "icon.ico"
+  },
   "author": "Henry Lee Barton III",
   "license": "CC0-1.0",
   "devDependencies": {
