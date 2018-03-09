@@ -1,7 +1,6 @@
-import { ipcMain } from 'electron';
-
 const electron = require('electron')
-const autoUpdate = require("electron-updater");
+const {ipcMain} = require('electron');
+const {autoUpdater} = require("electron-updater");
 // Module to control application life.
 const app = electron.app
 // Module to create native browser window.
@@ -43,17 +42,17 @@ function createWindow () {
 app.on('ready', () => 
 { 
   createWindow(); 
-  autoUpdate.checkForUpdates();
+  autoUpdater.checkForUpdates();
 });
 
 // When the update has been downloaded and is ready to be installed,
 // Let the browser window know.
-autoUpdate.on('update-downloaded', (info) => {
+autoUpdater.on('update-downloaded', (info) => {
   mainWindow.webContents.send('updateReady');
 });
 
 ipcMain.on('quitAndInstall', (event, arg) => {
-  autoUpdate.quitAndInstall();
+  autoUpdater.quitAndInstall();
 });
 
 // Quit when all windows are closed.
