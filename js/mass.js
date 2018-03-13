@@ -9,8 +9,16 @@ let _errorMass = false;
 let _failedNumbers = '';
 
 $(()=> { 
-	$('.csv-link').css('text-decoration', 'none');
+	$('.csv-link').css('text-decoration', 'underline');
 	$('.csv-link p').css('font-family', "'Rubik', sans-serif");
+	$('.csv-link p').hover(() => { $('.csv-link p').css('cursor', 'pointer'); }, () => { $('.csv-link p').css('cursor', 'default'); });
+});
+
+// Make all urls open in browser
+$('.csv-link').on('click', (event) => {
+	$('.csv-link p').css('color', 'blue');
+    event.preventDefault();
+    shell.openExternal('https://docs.google.com/spreadsheets/d/1Qr7eTld0B0fssDjl4L0AVeajfx3sKjhqKGtRZ9cSpRY/export?format=csv');
 });
 /** Functions **/
 

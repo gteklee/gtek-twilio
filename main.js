@@ -43,6 +43,7 @@ app.on('ready', () =>
 { 
   createWindow(); 
   autoUpdater.checkForUpdates();
+
 });
 
 // When the update has been downloaded and is ready to be installed,
