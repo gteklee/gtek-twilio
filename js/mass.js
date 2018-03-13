@@ -4,6 +4,7 @@ let successCount = 0;
 let failedCount = 0;
 let sent = false;
 let imported = false;
+let failedDisplayed = false;
 
 let _errorMass = false;
 let _failedNumbers = '';
@@ -12,6 +13,7 @@ $(()=> {
 	$('.csv-link').css('text-decoration', 'underline');
 	$('.csv-link p').css('font-family', "'Rubik', sans-serif");
 	$('.csv-link p').hover(() => { $('.csv-link p').css('cursor', 'pointer'); }, () => { $('.csv-link p').css('cursor', 'default'); });
+
 });
 
 // Make all urls open in browser
@@ -98,6 +100,8 @@ function readData(data)
 	{
 		table = table + '</table>\n';
 		sent = false;
+		failedDisplayed = false;
+		_failedNumbers = '';
 	}
 	else table = '<div id="error-mass-msg"> <h1> ' + _errorMsg + ' </h1> </div>';
 
@@ -183,6 +187,7 @@ function createMessage_Mass()
 			sendMessage(message, info[0]);
 		}
 		sent = true;
+		generateSendMessage('sending');
 		setTimeout(generateSendMessage, 3000);
 	}
 }
@@ -191,21 +196,32 @@ function createMessage_Mass()
  * Generate a message to inform the user how many messages were successfuly sent
  * and how many failed to send.
  */
-function generateSendMessage()
+function generateSendMessage(arg)
 {
-	console.log(successCount, failedCount);
-	console.log(_failedNumbers);
 	let message = '';
-	if(successCount > 0)
-		message  = '<div id="send-msg"> <h1 id="send-msg-succ"> Messages Sent: ' + successCount + ' </h1> <h1 id="send-msg-fail"> Failed to Send: ' + failedCount + '</div>';
-	else
-		message  = '<div id="send-msg"> <h1 id="send-msg-fail"> All Failed to Send: ' + failedCount + '</div>';
+	this.arg = arg;
 
-	$('#send-msg').remove();
+	if(this.arg == 'sending')
+	{
+		message = '<div class="send-msg"> <h1 id="send-msg-succ"> Sending... </h1> </div>';
+	}
+	else
+	{
+		if(successCount > 0)
+			message  = '<div class="send-msg"> <h1 id="send-msg-succ"> Messages Sent: ' + successCount + ' </h1> <h1 id="send-msg-fail" onclick="displayFailedNumbers()"> Failed to Send: ' + failedCount + '</div>';
+		else
+			message  = '<div class="send-msg"> <h1 id="send-msg-fail"> All Failed to Send: ' + failedCount + '</h1> </div>';
+		
+			console.log(successCount, failedCount);
+		console.log(_failedNumbers);
+	}
+
+	$('.send-msg').remove();
 	$('.msg-results').append(message);
 	$('#send-msg-succ').css('color', '#4286f4');
 	$('#send-msg-fail').css('color', 'red');
-	$('#send-msg').css('font-family', 'arial');
+	$('#send-msg-fail').hover(() => { $('#send-msg-fail').css('cursor', 'pointer'); }, () => { $('#send-msg-fail').css('cursor', 'default'); });
+	$('.send-msg').css('font-family', 'arial');
 }
 
 /** Jquery functions **/
@@ -213,7 +229,7 @@ function addTable(table)
 {
 	$('.tbl-mass').remove();
 	$('#error-mass-msg').remove();
-	$('#send-msg').remove();
+	$('.send-msg').remove();
 	$('.table-container').append(table);
 	$('.table-container').css('text-align', 'center');
 	$('#error-mass-msg').css('color', 'red');
@@ -226,6 +242,16 @@ function showPreview()
 	{
 		$('.message-preview').toggle();
 		imported = true;
+	}
+}
+
+function displayFailedNumbers()
+{
+	if(!failedDisplayed && sent)
+	{
+		let fails = '<p id="failed-numbers"> ' + _failedNumbers + ' </p>';
+		$('.send-msg').append(fails);
+		failedDisplayed = true;
 	}
 }
 

@@ -41,7 +41,7 @@ function sendMessage(message, to)
 		if(err)
 		{
 /**/		console.error(err.message);
-			_failedNumbers += to+'\n';
+			_failedNumbers += '<p>' + to + '</p>\n';
 			failedCount++;
 			console.log(failedCount);
 		}
