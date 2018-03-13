@@ -20,8 +20,9 @@ function createMessage_Single()
 	date = $('#datepicker').val();
 
 	message = 'Gtek Communications Appointment for ' + type + ' Reminder:\n-----------------------\nFor: ' + name + '\nDate: ' + date;
-	message += '\n-----------------------\nIf you have any questions or need to make changes, please contact us at 361-777-1400. Thank you!';
+	message += '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
 
+	clearInput();
 	sendMessage(message, number);
 }
 
@@ -40,6 +41,7 @@ function sendMessage(message, to)
 		if(err)
 		{
 /**/		console.error(err.message);
+			_failedNumbers += to+'\n';
 			failedCount++;
 			console.log(failedCount);
 		}
@@ -66,9 +68,9 @@ function getType(type)
 		$('.lbl_error').text(_errorMessage);
 		$('.lbl_error').show(); 
 	}
-	else if(type == 1 || type == 'repair')
+	else if(type == 1 || type == 'repair' || type == 'Repair')
 		return 'Repair';
-	else if(type == 2 || type == 'install')
+	else if(type == 2 || type == 'install' || type == 'Install')
 		return 'Installation';
 	else
 	{
@@ -103,6 +105,14 @@ function checkInput()
 		$('.lbl_error').text(_errorMsg);
 		$('.lbl_error').show(); 
 	}
+}
+
+function clearInput()
+{
+	$('#input_name').val('');
+	$('#input_number').val('');
+	$('#input_type').val('0');
+	$('#datepicker').val('');
 }
 
 /** EVENTS **/

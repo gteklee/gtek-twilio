@@ -6,7 +6,12 @@ let sent = false;
 let imported = false;
 
 let _errorMass = false;
+let _failedNumbers = '';
 
+$(()=> { 
+	$('.csv-link').css('text-decoration', 'none');
+	$('.csv-link p').css('font-family', "'Rubik', sans-serif");
+});
 /** Functions **/
 
 /**
@@ -47,6 +52,7 @@ function chooseFile()
 function readData(data)
 {
 	let rows = data.split('\n'); // Split row by new line char.
+	rows.shift(); // Remove first element of array.
 /**/console.log(rows);
 
 	// Check that there is not an empty cell.
@@ -80,7 +86,11 @@ function readData(data)
 	}
 
 	// Provide user with appropriate data.
-	if(!_errorMass) table = table + '</table>\n';
+	if(!_errorMass) 
+	{
+		table = table + '</table>\n';
+		sent = false;
+	}
 	else table = '<div id="error-mass-msg"> <h1> ' + _errorMsg + ' </h1> </div>';
 
 	addTable(table); // Add table to html.
@@ -160,7 +170,7 @@ function createMessage_Mass()
 			let info = _Data[i].split(','); // Split data by ','.
 
 			let message = 'Gtek Communications Appointment for ' + getType(info[2]) + ' Reminder:\n-----------------------\nFor: ' + info[1] + '\nDate: ' + info[3];
-			message = message + '\n-----------------------\nIf you have any questions or need to make changes, please contact us at 361-777-1400. Thank you!';
+			message = message + '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
 
 			sendMessage(message, info[0]);
 		}
@@ -176,6 +186,7 @@ function createMessage_Mass()
 function generateSendMessage()
 {
 	console.log(successCount, failedCount);
+	console.log(_failedNumbers);
 	let message = '';
 	if(successCount > 0)
 		message  = '<div id="send-msg"> <h1 id="send-msg-succ"> Messages Sent: ' + successCount + ' </h1> <h1 id="send-msg-fail"> Failed to Send: ' + failedCount + '</div>';

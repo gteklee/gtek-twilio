@@ -1,3 +1,10 @@
+section#option-mass {
+	font-family: 'Rubik', sans-serif;
+	font-size: 16px;
+
+	margin: 2rem;
+}
+
 textarea {
 	margin: 0;
 	width: 85%;
