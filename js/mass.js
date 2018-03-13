@@ -20,7 +20,7 @@ $(()=> {
 $('.csv-link').on('click', (event) => {
 	$('.csv-link p').css('color', 'blue');
     event.preventDefault();
-    shell.openExternal('https://docs.google.com/spreadsheets/d/1Qr7eTld0B0fssDjl4L0AVeajfx3sKjhqKGtRZ9cSpRY/export?format=csv');
+    shell.openExternal('https://docs.google.com/spreadsheets/d/1ipod-Y2yqVD23rBjR75Hot_xyKnG0zhbL4MT5OSqpoM/export?format=csv');
 });
 /** Functions **/
 
