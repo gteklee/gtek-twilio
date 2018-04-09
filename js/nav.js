@@ -30,24 +30,6 @@ $('.other').on('click', event => {
 });
 
 /**
- * When an <i> element(font-awesome icon) is clicked, it breaks
- * the jquery click listener. To fix this,
- * I set the option with an onclick in the <i> tag.
- */
-function setOption(option)
-{
-	console.log(option);
-	if(option === 0)
-		$('#option-single').removeClass('other').addClass('active');
-	else if(option === 1)
-		$('#option-mass').removeClass('other').addClass('active');
-	else if(option === 2)
-		$('#option-settings').removeClass('other').addClass('active');
-	else
-		return;
-}
-
-/**
  * Set the first menu option as the active option when
  * DOM window loads.
  */
