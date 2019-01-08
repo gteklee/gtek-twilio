@@ -19,8 +19,18 @@ function createMessage_Single()
 {
 	date = $('#datepicker').val();
 
-	message = 'Gtek Communications Appointment for ' + type + ' Reminder:\n-----------------------\nFor: ' + name + '\nDate: ' + date;
-	message += '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
+	if(type === 'Repair') {
+		message = 'Gtek Communications Appointment for ' + type + ' Reminder:\n-----------------------\nFor: ' + name + '\nDate: ' + date;
+		message += '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
+		message += '\n\nNo confirmation could result in cancelation of appointment!';
+		message += '\n\nWe currently do not have an estimated time of arrival. A technician will contact you between the hours of 7AM and 8AM.'
+	}
+	else {
+		message = 'Gtek Communications Appointment for ' + type + ' Reminder:\n-----------------------\nFor: ' + name + '\nDate: ' + date;
+		message += '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
+		message += '\n\nIf no confirmation is given before the day of install it will be assumed that you are not available that day and your spot will be replaced with another confirmed install!';
+		message += '\n\nWe currently do not have an estimated time of arrival. A technician will contact you between the hours of 7AM and 8AM.'
+	}
 
 	clearInput();
 	sendMessage(message, number);

@@ -180,9 +180,20 @@ function createMessage_Mass()
 			 */
 
 			let info = _Data[i].split(','); // Split data by ','.
-
-			let message = 'Gtek Communications Appointment for ' + getType(info[2]) + ' Reminder:\n-----------------------\nFor: ' + info[1] + '\nDate: ' + info[3];
-			message = message + '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
+			let message;
+			
+			if(getType(info[2]) === 'Repair') {
+				message = 'Gtek Communications Appointment for ' + getType(info[2]) + ' Reminder:\n-----------------------\nFor: ' + info[1] + '\nDate: ' + info[3];
+				message = message + '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
+				message += '\n\nNo confirmation could result in cancelation of appointment!';
+				message += '\n\nWe currently do not have an estimated time of arrival. A technician will contact you between the hours of 7AM and 8AM.'
+			}
+			else {
+				message = 'Gtek Communications Appointment for ' + getType(info[2]) + ' Reminder:\n-----------------------\nFor: ' + info[1] + '\nDate: ' + info[3];
+				message += '\n-----------------------\nReply with:\n1 to Confirm\n2 to Reschedule\n3 to Cancel\n4 to Request Call';
+				message += '\n\nIf no confirmation is given before the day of install it will be assumed that you are not available that day and your spot will be replaced with another confirmed install!';
+				message += '\n\nWe currently do not have an estimated time of arrival. A technician will contact you between the hours of 7AM and 8AM.'
+			}
 
 			sendMessage(message, info[0]);
 		}
